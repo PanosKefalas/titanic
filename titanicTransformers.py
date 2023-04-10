@@ -22,3 +22,15 @@ class titanicEncoder(BaseEstimator, TransformerMixin):
             dfEncoded = dfEncoded.drop(columns=['PassengerId', 'Name', 'Ticket'])
 
         return dfEncoded
+    
+class imputeAge(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self
+
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X, y=None, column='Age'):
+        
+        X[column].fillna(X[column].mean(), inplace=True)
+        return X
