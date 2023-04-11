@@ -1,4 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.pipeline import Pipeline
 import pandas as pd
 
 class titanicEncoder(BaseEstimator, TransformerMixin):
@@ -34,3 +36,18 @@ class imputeColumnMean(BaseEstimator, TransformerMixin):
         dfFilled = X.copy()
         dfFilled[self.columns] = X[self.columns].fillna(X[self.columns].mean())
         return dfFilled
+    
+
+def transformTitanicDf(X):
+    encoder = titanicEncoder(dropUnusedColumns=True)
+    dfEncoded = encoder.fit_transform(X)
+
+    cleanPipeline = Pipeline([
+    ('imputer', imputeColumnMean()),
+    ('scaler', MinMaxScaler())
+    ])
+
+    dfTransformed = dfEncoded.copy()
+    dfTransformed[dfTransformed.columns] = cleanPipeline.fit_transform(dfEncoded)
+
+    return dfTransformed
