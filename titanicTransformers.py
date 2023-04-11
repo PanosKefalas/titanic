@@ -23,14 +23,14 @@ class titanicEncoder(BaseEstimator, TransformerMixin):
 
         return dfEncoded
     
-class imputeAge(BaseEstimator, TransformerMixin):
+class imputeColumnMean(BaseEstimator, TransformerMixin):
     def __init__(self):
         self
 
     def fit(self, X, y=None):
         return self
     
-    def transform(self, X, y=None, column='Age'):
-        
-        X[column].fillna(X[column].mean(), inplace=True)
-        return X
+    def transform(self, X, y=None, columns=['Age']):
+        dfFilled = X.copy()
+        dfFilled[columns] = X[columns].fillna(X[columns].mean())
+        return dfFilled
