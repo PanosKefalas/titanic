@@ -17,7 +17,7 @@ class titanicEncoder(BaseEstimator, TransformerMixin):
         embarkationEncoded = pd.concat([X, encodeEmbarkation], axis=1)
         dfEncoded = embarkationEncoded.drop(columns='Embarked')
 
-        dfEncoded['Sex'] = dfEncoded['Sex'].replace(['female', 'male'], [0,1])
+        dfEncoded['Sex'] = dfEncoded['Sex'].replace(['female', 'male'], [1,0])
         dfEncoded['Cabin'] = dfEncoded['Cabin'].notna().astype('int')
         
         if self.dropUnusedColumns:
