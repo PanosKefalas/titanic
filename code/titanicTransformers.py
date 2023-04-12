@@ -50,4 +50,6 @@ def transformTitanicDf(X):
     dfTransformed = dfEncoded.copy()
     dfTransformed[dfTransformed.columns] = cleanPipeline.fit_transform(dfEncoded)
 
+    dfTransformed = dfTransformed.reset_index(drop=True)
+
     return dfTransformed
