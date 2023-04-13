@@ -5,7 +5,7 @@ import pandas as pd
 
 class titanicEncoder(BaseEstimator, TransformerMixin):
 
-    def __init__(self, dropUnusedColumns=False):
+    def __init__(self, dropUnusedColumns=True):
         self.dropUnusedColumns = dropUnusedColumns
 
     def fit(self, X, y=None):
@@ -38,7 +38,7 @@ class imputeColumnMean(BaseEstimator, TransformerMixin):
         return dfFilled
     
 
-def transformTitanicDf(X):
+def transformTitanicDf(X, y=None):
     encoder = titanicEncoder(dropUnusedColumns=True)
     dfEncoded = encoder.fit_transform(X)
 
