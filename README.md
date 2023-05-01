@@ -1,2 +1,2 @@
 # titanic
-Titanic dataset predictions with classification Machine Learning models.
+Titanic dataset EDA and predictions with classification Machine Learning models.
